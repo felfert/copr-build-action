@@ -31312,7 +31312,7 @@ try {
 
   // Get the JSON webhook payload for the event that triggered the workflow
   const pl = githubExports.context.payload;
-  const eventName = pl.eventName;
+  const eventName = githubExports.context.eventName;
 
   const userAgent = 'copr-build-action';
   let headers = {
@@ -31324,8 +31324,8 @@ try {
       'X-GitHub-Event': eventName
   };
   let payload = JSON.stringify(pl, undefined, 2);
-      
-  if (eventName != 'create' && eventName != 'push' || force) {
+ 
+  if ((eventName != 'create' && eventName != 'push') || force) {
       headers['X-GitHub-Event'] = 'create';
       const pobj = {
           description: pl.repository.description,

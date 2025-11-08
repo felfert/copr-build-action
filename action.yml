@@ -1,0 +1,18 @@
+name: COPR build action
+description: Trigger build on COPR
+
+inputs:
+  url:
+    description: Webhook URL from COPR
+    required: true
+  ref:
+    description: Tag or branch to build
+    required: false
+  force:
+    description: Force artificial tag request
+    required: false
+    default: false
+
+runs:
+  using: node20
+  main: dist/index.js
